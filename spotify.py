@@ -8,8 +8,8 @@ import datetime
 import sqlite3
 
 DATABASE_LOCATION = "sqlite:///my_played_tracks.sqlite"
-USER_ID = "ee39bc4d94c94f9092621b205f68044e" # your Spotify username 
-TOKEN = "" # your Spotify API token
+USER_ID = "p1jfbwf3b2167ylq5fne0kp63" # your Spotify username 
+TOKEN = "BQCKguDtdLzfazN1cRSBtC_woY77O6rfH6zzYZabWiIfCsqVYYqD4BEEpVHLFHlJIyIpH0XNSglMzvo-Sp6e0cWTvR6frlkjeGGa7AG_EFj38HR4hdbJ" # your Spotify API token
 
 
 def check_if_valid_data(df: pd.DataFrame) -> bool:
