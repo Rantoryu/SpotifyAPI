@@ -8,8 +8,8 @@ import datetime
 import sqlite3
 
 DATABASE_LOCATION = "sqlite:///my_played_tracks.sqlite"
-USER_ID = "p1jfbwf3b2167ylq5fne0kp63" # your Spotify username 
-TOKEN = "BQCKguDtdLzfazN1cRSBtC_woY77O6rfH6zzYZabWiIfCsqVYYqD4BEEpVHLFHlJIyIpH0XNSglMzvo-Sp6e0cWTvR6frlkjeGGa7AG_EFj38HR4hdbJ" # your Spotify API token
+USER_ID = ""
+TOKEN = ""
 
 
 def check_if_valid_data(df: pd.DataFrame) -> bool:
@@ -56,6 +56,7 @@ if __name__ == "__main__":
     r = requests.get("https://api.spotify.com/v1/me/player/recently-played?after={time}".format(time=yesterday_unix_timestamp), headers = headers)
 
     data = r.json()
+    print(data)
 
     song_names = []
     artist_names = []
