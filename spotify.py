@@ -50,7 +50,6 @@ if __name__ == "__main__":
     r = requests.get("https://api.spotify.com/v1/me/player/recently-played?after={time}".format(time=yesterday_unix_timestamp), headers = headers)
 
     data = r.json()
-    print(data)
 
     song_names = []
     artist_names = []
