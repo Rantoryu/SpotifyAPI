@@ -45,7 +45,6 @@ It will create tracks.sqlite database.
   python.exe .\convert.py
 ```
 
-
 ## 🛠️ Tech Stack
 
 Python, Sqlite
