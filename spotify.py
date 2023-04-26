@@ -2,7 +2,6 @@ import sqlalchemy
 import pandas as pd 
 from sqlalchemy.orm import sessionmaker
 import requests
-import json
 from datetime import datetime
 import datetime
 import sqlite3
@@ -10,8 +9,8 @@ import sqlite3
 DATABASE_LOCATION = "sqlite:///tracks.sqlite"
 
 #Please use your own User_ID and TOKEN (if You need one generate it through gettoken.py)
-USER_ID = "p1jfbwf3b2167ylq5fne0kp63"
-TOKEN = "BQA77eaXigb7tcIui7_M8V7e6l_yTMgGfGMdYjOoHglF0zENh1Uq1w7SmzO7V_IwG-hafqFiTG_cEcxVmx_gKv0ZTF8cD-UMm8JtaNY_yahpSOPNhEVTxodJGkqXkC03uSkaEj5lIIBQLfWms3viGTF9mcTqNsD5cvDYsk_izQik8XTeXtpwg42nxs_RFzqrN88LUZz8iu5h0pEaO6gRTtMvP5jsg-chsKCQmzN4ZJAGGnOZAnb9IRRBJqVmFDd-ZODanW1DYgG1t8lg952AcJI8njvbimRdRDrCkplKzbkc4MF9jEd1wPdrK0jAKiuJBY6PKCpDH67I2xiqpfhxAte6oK9b7l5ETMePFSXTlJmeQc8"
+USER_ID = ""
+TOKEN = ""
 
 def check_if_valid_data(df: pd.DataFrame) -> bool:
     if df.empty:
@@ -26,11 +25,6 @@ def check_if_valid_data(df: pd.DataFrame) -> bool:
     if df.isnull().values.any():
         raise Exception("Null values found")
 
-    yesterday = datetime.datetime.now() - datetime.timedelta(days=1)
-    yesterday = yesterday.replace(hour=0, minute=0, second=0, microsecond=0)
-
-    return True
-
 if __name__ == "__main__":
 
     headers = {
@@ -40,10 +34,10 @@ if __name__ == "__main__":
     }
 
     today = datetime.datetime.now()
-    yesterday = today - datetime.timedelta(days=1)
-    yesterday_unix_timestamp = int(yesterday.timestamp()) * 1000
+    timestamp_point = today - datetime.timedelta(days=7)
+    timestamp_point_unix_timestamp = int(timestamp_point.timestamp()) * 1000
       
-    r = requests.get("https://api.spotify.com/v1/me/player/recently-played?after={time}".format(time=yesterday_unix_timestamp), headers = headers)
+    r = requests.get("https://api.spotify.com/v1/me/player/recently-played?after={time}&limit=50".format(time=timestamp_point_unix_timestamp), headers = headers)
 
     data = r.json()
 
