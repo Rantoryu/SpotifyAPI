@@ -1,5 +1,6 @@
 import requests
 
+#Please use your own CLIENT_ID and CLIENT_SECRET to generate token. You can create your own APP here: https://developer.spotify.com/dashboard
 CLIENT_ID = ''
 CLIENT_SECRET = ''
 
