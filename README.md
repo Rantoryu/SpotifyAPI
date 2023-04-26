@@ -1,35 +1,54 @@
-# SpotifyAPI
+# 🎵 SpotifyAPI - Data Engineering Learning Project
 
-## WIP - Data Engineering Project for preparation
+## 📝 Description
+Simple project that retrieve data using SpotifyAPI and automatically stores it in sqlite database.
+<br>
+Used reference: https://developer.spotify.com/documentation/web-api/reference/get-recently-played
+<br>
+Feel free to use any other to get your own data.
 
-Simple SpotifyAPI Project
-Live version: ---- (WIP) ----
+Live Example: (WIP)
 
 <br>
 
 ## 🚀 Run Locally
 
-Clone the project
+1. Clone the project
 
 ```bash
   git clone https://github.com/Rantoryu/SpotifyAPI.git/
 ```
 
-Install dependencies (WIP)
+2. Install dependencies
 
 ```bash
   pip install -r requirements.txt
 ```
 
-Using The API (WIP)
+3. Create Spotify App and Generate Token
 
+Generate token using Client ID and Client Secret from your own APP (https://developer.spotify.com/dashboard)
 ```bash
-  python .\
+  python.exe .\gettoken.py
 ```
 
-## 📝 Tech Stack
+4. Retrieve last played tracks
 
-Python
+Retrieve last played tracks from last 7 days (Limit 50 tracks) by running:
+```bash
+  python.exe .\spotify.py
+```
+It will create tracks.sqlite database.
+
+5. Simple convert of database to dataframe with printing it out (Optional)
+```bash
+  python.exe .\convert.py
+```
+
+
+## 🛠️ Tech Stack
+
+Python, Sqlite
 
 
 ## 👨‍🚀 Show your support
