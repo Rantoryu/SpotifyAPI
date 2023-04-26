@@ -7,10 +7,11 @@ from datetime import datetime
 import datetime
 import sqlite3
 
-DATABASE_LOCATION = "sqlite:///my_played_tracks.sqlite"
-USER_ID = ""
-TOKEN = ""
+DATABASE_LOCATION = "sqlite:///tracks.sqlite"
 
+#Please use your own User_ID and TOKEN (if You need one generate it through gettoken.py)
+USER_ID = "p1jfbwf3b2167ylq5fne0kp63"
+TOKEN = "BQA77eaXigb7tcIui7_M8V7e6l_yTMgGfGMdYjOoHglF0zENh1Uq1w7SmzO7V_IwG-hafqFiTG_cEcxVmx_gKv0ZTF8cD-UMm8JtaNY_yahpSOPNhEVTxodJGkqXkC03uSkaEj5lIIBQLfWms3viGTF9mcTqNsD5cvDYsk_izQik8XTeXtpwg42nxs_RFzqrN88LUZz8iu5h0pEaO6gRTtMvP5jsg-chsKCQmzN4ZJAGGnOZAnb9IRRBJqVmFDd-ZODanW1DYgG1t8lg952AcJI8njvbimRdRDrCkplKzbkc4MF9jEd1wPdrK0jAKiuJBY6PKCpDH67I2xiqpfhxAte6oK9b7l5ETMePFSXTlJmeQc8"
 
 def check_if_valid_data(df: pd.DataFrame) -> bool:
     if df.empty:
@@ -27,11 +28,6 @@ def check_if_valid_data(df: pd.DataFrame) -> bool:
 
     yesterday = datetime.datetime.now() - datetime.timedelta(days=1)
     yesterday = yesterday.replace(hour=0, minute=0, second=0, microsecond=0)
-
-    timestamps = df["timestamp"].tolist()
-    for timestamp in timestamps:
-        if datetime.datetime.strptime(timestamp, '%Y-%m-%d') != yesterday:
-            raise Exception("At least one of the returned songs does not have a yesterday's timestamp")
 
     return True
 
@@ -75,11 +71,11 @@ if __name__ == "__main__":
         print("Data valid, proceed to Load stage")
 
     engine = sqlalchemy.create_engine(DATABASE_LOCATION)
-    conn = sqlite3.connect('my_played_tracks.sqlite')
+    conn = sqlite3.connect('tracks.sqlite')
     cursor = conn.cursor()
 
     sql_query = """
-    CREATE TABLE IF NOT EXISTS my_played_tracks(
+    CREATE TABLE IF NOT EXISTS tracks(
         song_name VARCHAR(200),
         artist_name VARCHAR(200),
         played_at VARCHAR(200),
@@ -92,7 +88,7 @@ if __name__ == "__main__":
     print("Opened database successfully")
 
     try:
-        song_df.to_sql("my_played_tracks", engine, index=False, if_exists='append')
+        song_df.to_sql("tracks", engine, index=False, if_exists='append')
     except:
         print("Data already exists in the database")
 
