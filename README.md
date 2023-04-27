@@ -7,7 +7,7 @@ Used reference: https://developer.spotify.com/documentation/web-api/reference/ge
 <br>
 Feel free to use any other to get your own data.
 
-Live Example: (WIP)
+Live Example: (WIP Integration with Personal Website)
 
 <br>
 
